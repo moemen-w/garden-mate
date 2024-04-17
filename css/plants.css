@@ -52,6 +52,11 @@
   border-radius: 8px; /* Add border-radius if you want rounded corners */
 }
 
+.add-plant-card {
+  border: 2px dashed #68B684; /* Your desired color for the dashed border */
+  background: none;
+  color: #68B684; /* Text color */
+}
 
 @media (max-width: 767.98px) { /* Bootstrap's medium breakpoint */
   #plants-banner {
