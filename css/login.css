@@ -1,0 +1,99 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.sign-page {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  min-width: 50%;
+}
+.background-login {
+  background-image: url(../assets/images/sign_background.png);
+  background-position: center;
+  background-size: cover;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.background-login p {
+  display: inline-block;
+  color: #3ab37c;
+  line-height: 25px;
+}
+.background-login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.logo-name {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  right: 60px;
+}
+
+.sign-content {
+  background-color: #3ab37c;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 100px 50px;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 30px 30px;
+}
+input {
+  height: 50px;
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 30px;
+  border: 0px;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 30px;
+}
+
+.button-primary {
+  background-color: white;
+  padding: 20px 60px;
+  border-radius: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.button-secondary {
+  padding: 20px 60px;
+  border-radius: 20px;
+}
+
+.button-primary a {
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  color: #3ab37c;
+}
+.button-secondary a {
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
