@@ -1,0 +1,65 @@
+#plants-banner {
+  position: relative;
+  height: 200px; /* Set the height of your div */
+  background: url('../assets/images/plants.png') center right / 50.5% 100% no-repeat;
+  box-sizing: border-box;
+}
+
+#plants-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 50%;
+  bottom: 0;
+  background: url('../assets/images/plants.png') center left / 100% 100% no-repeat;
+  transform: scaleX(-1); /* This mirrors/flips the background image */
+  z-index: -1;
+  box-sizing: border-box;
+}
+
+#plants-banner .text-overlay {
+  text-align: center; /* Center the text horizontally */
+  color: rgba(43, 132, 71, 0.875); /* Ensures text is visible on darker backgrounds */
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+}
+
+#plants-banner .text-overlay p, .text-overlay h2 {
+  margin: 0; /* Removes default margin */
+  text-align: center;
+  padding: 0.15em 0; /* Adds vertical padding */
+}
+
+#plants-banner .text-overlay p {
+  color: black;
+  width: 400px;
+}
+
+.search-container {
+  position: absolute; /* Absolute positioning for the search bar */
+  bottom: -20px; /* Half the height of your search bar to pull it outside */
+  left: 0;
+  right: 0;
+  padding: 0 15px; /* Add some padding on the sides if needed */
+}
+
+.search-form {
+  position: relative;
+  margin: 0 auto; /* Center it horizontally */
+}
+
+.search-form .form-control {
+  border-radius: 8px; /* Add border-radius if you want rounded corners */
+}
+
+
+@media (max-width: 767.98px) { /* Bootstrap's medium breakpoint */
+  #plants-banner {
+    height: 150px;
+  }
+
+  #plants-banner .text-overlay p {
+    width: 200px;
+    font-size: 10px;
+  }
+}

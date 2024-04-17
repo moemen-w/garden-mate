@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="./libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Index CSS -->
+    <link href="./css/index.css" rel="stylesheet" />
+
+    <!-- Plants CSS -->
+    <link href="./css/plants.css" rel="stylesheet" />
+
+    <title>GardenMate</title>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="dashboard" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACAElEQVR4nO2cTW7CYAwFvSJ3aG5IC8eksOjPVVDYv26yQkplZ4HtTzOS1zzLeJBQYjMAAAAAAIC6TGZ2NrOrmT3MTC+ux/rZH2Z2GDBviNnMfhOa0kb9rJlGyRtiKtac1vre+OZ1yxvmXKAZbdT7AHnD3Ao0oo36HCBvmKVAI9qoZYC8YVS8numWN0x2A2IgDERsCBviJltJQlkMRCiLDXGTrSShLAYilMWGuMlWklAWAxHKYkPcZCtJKIuBCGWxIW6ylSSUxUCEstgQN9lKEspiIEJZbIibbCUJZTEQoSw2xE22koSyGIhQFhvipvLDy/cB8oa5FmhEG3UZIG+YU4FGtFHHAfKGmdZ35FSsvv55pa1T3l3MxZr8MrO3gfLu4rC+4ntJ+uFc1s8+Or9p3fICAAC8jG63Q6ZmeUN0ux0yN8sbotvtkKlZ3jDdboecm+UN0+12yK1Z3jCV/85eBsgbRsXrmW55w2Q3IAbCQMSGsCFuspUklMVAhLLYEDfZShLKYiBCWWyIm2wlCWUxEKEsNsRNtpKEshiIUBYb4iZbSUJZDEQoiw1xk60koSwGIpTFhrjJVpJQFgMRymJD3GQrSSiLgQhlsSFuKj+8fB8gb5hut0OuzfKG6XY75NQsb5hut0OmZnl30e12yNws7y663Q45NMsLAAAAAABgGfwBUFZqXZdAzw0AAAAASUVORK5CYII="
+        />
+      </symbol>
+      <symbol id="plant" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,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"
+        />
+      </symbol>
+      <symbol id="inventory" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACRUlEQVR4nO2csU7cQBRFr0SUr0qNgpJ8SyB/kpqOT4NESkUT+ossuYgUUewyb95dzznSNIvW7/KOZ8Y2FhIAAAAAwL98kHQt6V7Sn33c759tP4MJXEn6JOnnLsBvjGdJD5K+SfqImR4JRk6uBCMnV4KRkyvByMmV4JXlpEvwCnIuVYKPJOdoEnyJclaR4GQ5q0twghwkqF8OEpQzc7Yvsxxp+LK29fTrOUJ+B6zJPuj4dY6Q7tA++ECI+iUgRP2NR4j6m40Q9TcYIepvKkLU30iEqL95CFF/wxCi/iYhJKAxRkh/MxwweHSifgkIUX/j24WshhGSBULCQEgYCAkDIWEgJAyEhIGQMBASxnJCfkh6GfCoYjvGbUG+5YS8DHx+tB1rNMsJ8eCRki+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCRTkcni+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCRTkcni+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCRTkcni+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCE/9A9bcg33JC7vZGjpDxvSDfckLSQUgYCAkDIWFcvJAv+z/weu8m/STppuH4s/o0rdDTgGZ5H48Nx5/Vp2mFRjXLb9SrPv6sPk0rhBAhxIEnGDNECGHJEjNEbOps6mIPEZe97Vcl5j4k66rECEGIuQ8RM2T2HShLlrhTd+AJdjJpv4DZ1BFiZoiYISxZOvYewhBCfIEnwsmMfFmAoZNfnviP7RUYpKhExudzhAAAAACAzuQViG+wDTB98NYAAAAASUVORK5CYII="
+        />
+      </symbol>
+      <symbol id="forum" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,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"
+        />
+      </symbol>
+    </svg>
+
+    <main class="d-flex flex-nowrap">
+      <!-- Sidebar with fixed width -->
+      <div
+        id="sidebar"
+        class="d-md-flex flex-column flex-shrink-0 p-3 bg-light collapse"
+        style="width: 280px"
+      >
+        <!-- Close Button -->
+        <button
+          class="btn-close d-md-none"
+          style="position: absolute; top: 10px; right: 10px"
+          id="closeSidebar"
+          aria-label="Close"
+          data-bs-toggle="collapse"
+          data-bs-target="#sidebar"
+        ></button>
+
+        <!-- Sidebar Header -->
+        <a
+          href="#"
+          class="d-flex text-center align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+        >
+          <img class="" src="./assets/images/logo.png" height="50" />
+          <span class="fs-4">GardenMate</span>
+        </a>
+        <hr />
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link link-body-emphasis" aria-current="page">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#dashboard" />
+              </svg>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="plants.html" class="nav-link active">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#plant" />
+              </svg>
+              My Plants
+            </a>
+          </li>
+          <li>
+            <a href="inventory.html" class="nav-link link-body-emphasis">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#inventory" />
+              </svg>
+              Inventory
+            </a>
+          </li>
+          <li>
+            <a href="forum.html" class="nav-link link-body-emphasis">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#forum" />
+              </svg>
+              Forums
+            </a>
+          </li>
+        </ul>
+        <hr />
+        <div class="dropdown">
+          <a
+            href="#"
+            class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://github.com/mdo.png"
+              alt=""
+              width="32"
+              height="32"
+              class="rounded-circle me-2"
+            />
+            <strong>Moemen Mohamed</strong>
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="login.html">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main content area that uses the rest of the space -->
+      <div class="flex-grow-1 overflow-auto">
+        <div class="container-fluid p-0 g-0 m-0">
+          <div class="row p-0 g-0">
+            <div class="col-12" id="plants-banner">
+              <!-- Button visible only on XS devices -->
+              <button
+                class="btn d-md-none"
+                id="sidebarToggle"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#sidebar"
+                aria-expanded="false"
+                aria-controls="sidebar"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  class="bi bi-list"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                  />
+                </svg>
+              </button>
+
+              <div class="text-overlay p-3">
+                <h2 class="py-2">My Plants</h2>
+                <p class="mx-auto">Here you can add all your plants and 
+                  track their health through weekly notes 
+                  with photographic progress.</p>
+              </div>
+
+              <div class="search-container col-12 col-md-6 mx-auto">
+                <form class="search-form">
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <img src="./assets/images/search.png" alt="Search">
+                    </span>
+                    <input type="search" class="form-control" placeholder="Search my plants..." aria-label="Search">
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+
+          
+          <div class="p-3 py-5 g-0">
+            <div class="col-12 row g-4" id="all-plants">
+                
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 3 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 4 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 5 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 6 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 6 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 6 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 6 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 6 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
