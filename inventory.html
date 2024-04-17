@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="./libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Index CSS -->
+    <link href="./css/index.css" rel="stylesheet" />
+
+    <!-- Inventory CSS -->
+    <link href="./css/inventory.css" rel="stylesheet" />
+
+    <title>GardenMate</title>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="dashboard" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACAElEQVR4nO2cTW7CYAwFvSJ3aG5IC8eksOjPVVDYv26yQkplZ4HtTzOS1zzLeJBQYjMAAAAAAIC6TGZ2NrOrmT3MTC+ux/rZH2Z2GDBviNnMfhOa0kb9rJlGyRtiKtac1vre+OZ1yxvmXKAZbdT7AHnD3Ao0oo36HCBvmKVAI9qoZYC8YVS8numWN0x2A2IgDERsCBviJltJQlkMRCiLDXGTrSShLAYilMWGuMlWklAWAxHKYkPcZCtJKIuBCGWxIW6ylSSUxUCEstgQN9lKEspiIEJZbIibbCUJZTEQoSw2xE22koSyGIhQFhvipvLDy/cB8oa5FmhEG3UZIG+YU4FGtFHHAfKGmdZ35FSsvv55pa1T3l3MxZr8MrO3gfLu4rC+4ntJ+uFc1s8+Or9p3fICAAC8jG63Q6ZmeUN0ux0yN8sbotvtkKlZ3jDdboecm+UN0+12yK1Z3jCV/85eBsgbRsXrmW55w2Q3IAbCQMSGsCFuspUklMVAhLLYEDfZShLKYiBCWWyIm2wlCWUxEKEsNsRNtpKEshiIUBYb4iZbSUJZDEQoiw1xk60koSwGIpTFhrjJVpJQFgMRymJD3GQrSSiLgQhlsSFuKj+8fB8gb5hut0OuzfKG6XY75NQsb5hut0OmZnl30e12yNws7y663Q45NMsLAAAAAABgGfwBUFZqXZdAzw0AAAAASUVORK5CYII="
+        />
+      </symbol>
+      <symbol id="plant" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFZklEQVR4nO2dW4hVVRjH/5ajTUU3Q8jKwBIyiYwoo0jJSIjqoSCCIEUxuxBjV5AUw4cpfBCyeulFUJAcImkgH7rQBQmvU06TOZPSTJIPYklWFo52dnzwHWa7Z+291tpnnb3WOev7wQfDnL3X5fuftfa6fGsfQBAEQRAEWy4E8DKAPQD+ZqO/X+LPhAq5HsAggCTHDvI1QgVcDOBQgRh1+wnARVUUKHZWGYhRt9d8FzYGBiwE6fdd2Bj410KQf3wXNgYSSxOajAhSIfMBfMJzir/477sdCXIVgI0AjgM4DaAPwDIA51VZwVbiOQBnFQ49A2Bxg4JcC+CXnM+3AbjAU52D5WkAtQKnklCPlRRkCoAfNdd8BeASzz4Ihi6NGHWj0dW9JQTZaXjdbgBXIHK6DMWo258lBLGxAX7WRMkzlmJUZcMxroM9H6gYdfsVwCxEwp05o6nQbATA5YiADxw6jdaqHuIVYLKHAXzvMP1uRMCII2fRqGiyIv3JvFHlIg/aV2l7hh056x7NjN9FHjSqa3u2OnJWZ0EenY7yoAll23MbL4c06iwdLgRZjQhY4mjIq6PR9HfkPKPaigcdtY5mC7IzhrWtWbysnq746QAFodHbpWhzJvH+Q7riZ3gOsbKk4zoK8usomeY+AJchAt5UVJ42h8pEktTt9oL85pZI79tYVntvUHRNmxTXrbZ82O/hlpeFHsR7S4hB+yZR8GGm8iMFffQjAL6zEIauvQ/ARLb7AezX3FPj7vMEgJ8BvKGZ07QVdygcQk7XQQ56yuIbXrNsXU8iUrYqhpMTDO6bqIndbdSGc7q7tuYaAKMZR9Aakwk2raOsUR5RsVbR35tAD+UjFo49ycKP8nPB9L4jMczE0xwsGObqwoFMnUoTzatT906xFOVZRMLNihhb2kAyYW+Di38vWty/C5HweqbiHzUhmHokZ7g6yfD8SL2FRcEXmYqnIw91/GHozMcL0njUMI3fEAEdAE5lKp7u53V8bLg0rhs+f22QTi8iYG6m0hRTa8M8zSSPRlNzDNKZoxh2p+0/RSC3F1ZygDEtHxzjUckJdtwgR5y/C2AF71vbTqCWZSreU6KMK9hhKjEWW26GqfZfznLUZBAssIyLou7nUwCvchS5jnUGIyHT+C2a6Q/xF2UzgFtKpHMr3zvIab3PaQfFGgtBss38SwCLCvYjtmXueaLiurUkdEjls5KipJ8NXYqzFX2Z64L7NobKVABHGxSF7DCAB1LpHsp8fp3HOrYc8x3G2b7HA4Bjmf9f6buSrUaZ7dM8+1wx045m88fl82SHQ1GSjJnsfwgZZvCpVxEkIF4QQcLrukzWf6TLqpCZioVBEcQz9JY2ESSwrusbaSFhcaPla5Bk2FsBr4ggYTFBEQYqLcQznYr9cd3SSU1m6s2FFgzf0SxC0mdv87UiSEXMBvAWgB9SLy4e4P/dlLquJi0kLGoiSFjURBBBEARBCIPfm7idm1galSV6dgcgRMJGZYmeLQEIkbBRWaInezbQp62NXg2O200CsUUiCHBXAEIkbFSW6JkagBAJG5VFsDjn10w7KUrkHynwYX0iyBg9AQjSI4KM0R2AIN0iyBhLAxBkqQhy7tFk34LME0HGmBaAINNEkHNjsrKvdK3STslBn/H0exSkX1rHeFxELSYljfIWNG9kqNLWiRrjWe5RkOUiiPqdKL4EWSCCjGe6R0GmiyDqk1SuDu0kFkZ5yg8G53DAgyAHpHXk0+tBkF4RJJ/1HgRZL4K4ealx4sgoTyGHhR4EWShqFL+UpmpBZogg+Zzf4A93JZY2yj9VIRQwVKEgQ6KEnu0VCrJdBNGzoUJBNrS6IP8DzP5ydoLBS7YAAAAASUVORK5CYII="
+        />
+      </symbol>
+      <symbol id="inventory" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACiklEQVR4nO2cy2oUURRFGxQ/xi9I7RacBcU4zHf4GHYdyDc4duYwM+/J3H/xARk50blS4gtUQtl1++6uuxZcaEh3nZ2z+j66U2SzAQAAAAD4yf03F7dVxtMhx5fKuJ7Gt8dlPJ1+9uuZUI3zy/Nb2zLeU8aL7xK+/G0MJT4q49W27B7fvby4g5IGEoQcXwlCjq8EIcdXgpDjK0E9y3GXoB7kHKsErUnO2iToGOX0IkHOcnqXIAc5SIj2cpAQPjNnejHLUdRY2q6H13E2W8iQ44fWa7LWOkq8ny2keehc90BItpeAkGzfeIRk+2YjJNs3GCHZvqkIyfaNREi2bx5Csn3DEGLQJCGkfWOEkPbNkMHgq5NsLwEh2b7xzYVsOkMI8QIhZiDEDISYgRAzEGIGQsxAiBkIMaM7ISrj86HE532/qpiucZK7p4vn603IsICM36Usna87IVpIhls+30KVcsg8n2+hSjlkns+3UKUcMs/nW6hSDpnn8y1UKYfM8/kWqpRD5vl8C1XKIfN8voUq5ZB5Pt9ClXLIPJ9voUo5ZJ7Pt1ClHDLP51uoUg6Z5/MtVCmHzPP5FqqUQ+b5fAtVyiHzfL6FDvkHqhw/LZ2vOyEq8Wxq5BIyhowni+frTYg7CDEDIWYgxIyjFzJc7R5N/8Br71NTGd9ty+7hoa+/OiHTL7p3s/LHySneHvr66xOyULP0j3q1r4+QRAgzJJkhLFk34bbmij0EIWJTD2YIS1Zw7GUPCT4YymxPvPFUxSkrEMKxdwZuU1x8DkGI2EOCGcKSFZyy2EOCY6/M9sQ5B6wqpyFGIETGb4T5M2TBmwUYMfvmiT+YboFBSlSRcXI1PpgtBAAAAAA2/89XmWfxPRcm/oUAAAAASUVORK5CYII="
+        />
+      </symbol>
+      <symbol id="forum" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,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"
+        />
+      </symbol>
+    </svg>
+
+    <main class="d-flex flex-nowrap">
+      <!-- Sidebar with fixed width -->
+      <div
+        id="sidebar"
+        class="d-md-flex flex-column flex-shrink-0 p-3 bg-light collapse"
+        style="width: 280px"
+      >
+        <!-- Close Button -->
+        <button
+          class="btn-close d-md-none"
+          style="position: absolute; top: 10px; right: 10px"
+          id="closeSidebar"
+          aria-label="Close"
+          data-bs-toggle="collapse"
+          data-bs-target="#sidebar"
+        ></button>
+
+        <!-- Sidebar Header -->
+        <a
+          href="#"
+          class="d-flex text-center align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+        >
+          <img class="" src="./assets/images/logo.png" height="50" />
+          <span class="fs-4">GardenMate</span>
+        </a>
+        <hr />
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link link-body-emphasis" aria-current="page">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#dashboard" />
+              </svg>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="plants.html" class="nav-link link-body-emphasis">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#plant" />
+              </svg>
+              My Plants
+            </a>
+          </li>
+          <li>
+            <a href="inventory.html" class="nav-link active">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#inventory" />
+              </svg>
+              Inventory
+            </a>
+          </li>
+          <li>
+            <a href="forum.html" class="nav-link link-body-emphasis">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#forum" />
+              </svg>
+              Forums
+            </a>
+          </li>
+        </ul>
+        <hr />
+        <div class="dropdown">
+          <a
+            href="#"
+            class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://github.com/mdo.png"
+              alt=""
+              width="32"
+              height="32"
+              class="rounded-circle me-2"
+            />
+            <strong>Moemen Mohamed</strong>
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="login.html">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main content area that uses the rest of the space -->
+      <div class="flex-grow-1 overflow-auto">
+        <div class="container-fluid p-0 g-0 m-0">
+          <div class="row p-0 g-0">
+            <div class="col-12" id="inventory-banner">
+              <!-- Button visible only on XS devices -->
+              <button
+                class="btn d-md-none"
+                id="sidebarToggle"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#sidebar"
+                aria-expanded="false"
+                aria-controls="sidebar"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  class="bi bi-list"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                  />
+                </svg>
+              </button>
+
+              <div class="text-overlay p-3">
+                <h2 class="py-2">My Inventory</h2>
+                <p class="mx-auto">Here you can add all your inventory
+                  such as seeds, fertilizers, pesticides 
+                  and others.</p>
+              </div>
+
+              <div class="search-container col-12 col-md-6 mx-auto">
+                <form class="search-form">
+                  <div class="input-group">
+                    <span class="input-group-text">
+                      <img src="./assets/images/search.png" alt="Search">
+                    </span>
+                    <input type="search" class="form-control" placeholder="Search my inventory..." aria-label="Search">
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+
+          
+          <div class="p-3 py-5 g-0">
+            <div class="col-12 row g-4" id="all-inventory">
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="./libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
