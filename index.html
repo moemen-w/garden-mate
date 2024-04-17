@@ -1,282 +1,523 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link href="./libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Index CSS -->
-    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet" />
 
-    <title>Garden-Mate</title>
+    <title>GardenMate</title>
   </head>
   <body>
-
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-        <symbol id="dashboard" viewBox="0 0 24 24">
-            <image width="24" height="24" xlink:href="data:image/png;base64,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"/>
-        </symbol>
-        <symbol id="plant" viewBox="0 0 24 24">
-            <image width="24" height="24" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFZklEQVR4nO2dW4hVVRjH/5ajTUU3Q8jKwBIyiYwoo0jJSIjqoSCCIEUxuxBjV5AUw4cpfBCyeulFUJAcImkgH7rQBQmvU06TOZPSTJIPYklWFo52dnzwHWa7Z+291tpnnb3WOev7wQfDnL3X5fuftfa6fGsfQBAEQRAEWy4E8DKAPQD+ZqO/X+LPhAq5HsAggCTHDvI1QgVcDOBQgRh1+wnARVUUKHZWGYhRt9d8FzYGBiwE6fdd2Bj410KQf3wXNgYSSxOajAhSIfMBfMJzir/477sdCXIVgI0AjgM4DaAPwDIA51VZwVbiOQBnFQ49A2Bxg4JcC+CXnM+3AbjAU52D5WkAtQKnklCPlRRkCoAfNdd8BeASzz4Ihi6NGHWj0dW9JQTZaXjdbgBXIHK6DMWo258lBLGxAX7WRMkzlmJUZcMxroM9H6gYdfsVwCxEwp05o6nQbATA5YiADxw6jdaqHuIVYLKHAXzvMP1uRMCII2fRqGiyIv3JvFHlIg/aV2l7hh056x7NjN9FHjSqa3u2OnJWZ0EenY7yoAll23MbL4c06iwdLgRZjQhY4mjIq6PR9HfkPKPaigcdtY5mC7IzhrWtWbysnq746QAFodHbpWhzJvH+Q7riZ3gOsbKk4zoK8usomeY+AJchAt5UVJ42h8pEktTt9oL85pZI79tYVntvUHRNmxTXrbZ82O/hlpeFHsR7S4hB+yZR8GGm8iMFffQjAL6zEIauvQ/ARLb7AezX3FPj7vMEgJ8BvKGZ07QVdygcQk7XQQ56yuIbXrNsXU8iUrYqhpMTDO6bqIndbdSGc7q7tuYaAKMZR9Aakwk2raOsUR5RsVbR35tAD+UjFo49ycKP8nPB9L4jMczE0xwsGObqwoFMnUoTzatT906xFOVZRMLNihhb2kAyYW+Di38vWty/C5HweqbiHzUhmHokZ7g6yfD8SL2FRcEXmYqnIw91/GHozMcL0njUMI3fEAEdAE5lKp7u53V8bLg0rhs+f22QTi8iYG6m0hRTa8M8zSSPRlNzDNKZoxh2p+0/RSC3F1ZygDEtHxzjUckJdtwgR5y/C2AF71vbTqCWZSreU6KMK9hhKjEWW26GqfZfznLUZBAssIyLou7nUwCvchS5jnUGIyHT+C2a6Q/xF2UzgFtKpHMr3zvIab3PaQfFGgtBss38SwCLCvYjtmXueaLiurUkdEjls5KipJ8NXYqzFX2Z64L7NobKVABHGxSF7DCAB1LpHsp8fp3HOrYc8x3G2b7HA4Bjmf9f6buSrUaZ7dM8+1wx045m88fl82SHQ1GSjJnsfwgZZvCpVxEkIF4QQcLrukzWf6TLqpCZioVBEcQz9JY2ESSwrusbaSFhcaPla5Bk2FsBr4ggYTFBEQYqLcQznYr9cd3SSU1m6s2FFgzf0SxC0mdv87UiSEXMBvAWgB9SLy4e4P/dlLquJi0kLGoiSFjURBBBEARBCIPfm7idm1galSV6dgcgRMJGZYmeLQEIkbBRWaInezbQp62NXg2O200CsUUiCHBXAEIkbFSW6JkagBAJG5VFsDjn10w7KUrkHynwYX0iyBg9AQjSI4KM0R2AIN0iyBhLAxBkqQhy7tFk34LME0HGmBaAINNEkHNjsrKvdK3STslBn/H0exSkX1rHeFxELSYljfIWNG9kqNLWiRrjWe5RkOUiiPqdKL4EWSCCjGe6R0GmiyDqk1SuDu0kFkZ5yg8G53DAgyAHpHXk0+tBkF4RJJ/1HgRZL4K4ealx4sgoTyGHhR4EWShqFL+UpmpBZogg+Zzf4A93JZY2yj9VIRQwVKEgQ6KEnu0VCrJdBNGzoUJBNrS6IP8DzP5ydoLBS7YAAAAASUVORK5CYII="/>
-        </symbol>
-        <symbol id="inventory" viewBox="0 0 24 24">
-            <image width="24" height="24" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACRUlEQVR4nO2csU7cQBRFr0SUr0qNgpJ8SyB/kpqOT4NESkUT+ossuYgUUewyb95dzznSNIvW7/KOZ8Y2FhIAAAAAwL98kHQt6V7Sn33c759tP4MJXEn6JOnnLsBvjGdJD5K+SfqImR4JRk6uBCMnV4KRkyvByMmV4JXlpEvwCnIuVYKPJOdoEnyJclaR4GQ5q0twghwkqF8OEpQzc7Yvsxxp+LK29fTrOUJ+B6zJPuj4dY6Q7tA++ECI+iUgRP2NR4j6m40Q9TcYIepvKkLU30iEqL95CFF/wxCi/iYhJKAxRkh/MxwweHSifgkIUX/j24WshhGSBULCQEgYCAkDIWEgJAyEhIGQMBASxnJCfkh6GfCoYjvGbUG+5YS8DHx+tB1rNMsJ8eCRki+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCRTkcni+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCRTkcni+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCRTkcni+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCE/9A9bcg33JC7vZGjpDxvSDfckLSQUgYCAkDIWFcvJAv+z/weu8m/STppuH4s/o0rdDTgGZ5H48Nx5/Vp2mFRjXLb9SrPv6sPk0rhBAhxIEnGDNECGHJEjNEbOps6mIPEZe97Vcl5j4k66rECEGIuQ8RM2T2HShLlrhTd+AJdjJpv4DZ1BFiZoiYISxZOvYewhBCfIEnwsmMfFmAoZNfnviP7RUYpKhExudzhAAAAACAzuQViG+wDTB98NYAAAAASUVORK5CYII="/>
-        </symbol>
-        <symbol id="forum" viewBox="0 0 24 24">
-            <image width="24" height="24" xlink:href="data:image/png;base64,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"/>
-        </symbol>
+      <symbol id="dashboard" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,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"
+        />
+      </symbol>
+      <symbol id="plant" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFZklEQVR4nO2dW4hVVRjH/5ajTUU3Q8jKwBIyiYwoo0jJSIjqoSCCIEUxuxBjV5AUw4cpfBCyeulFUJAcImkgH7rQBQmvU06TOZPSTJIPYklWFo52dnzwHWa7Z+291tpnnb3WOev7wQfDnL3X5fuftfa6fGsfQBAEQRAEWy4E8DKAPQD+ZqO/X+LPhAq5HsAggCTHDvI1QgVcDOBQgRh1+wnARVUUKHZWGYhRt9d8FzYGBiwE6fdd2Bj410KQf3wXNgYSSxOajAhSIfMBfMJzir/477sdCXIVgI0AjgM4DaAPwDIA51VZwVbiOQBnFQ49A2Bxg4JcC+CXnM+3AbjAU52D5WkAtQKnklCPlRRkCoAfNdd8BeASzz4Ihi6NGHWj0dW9JQTZaXjdbgBXIHK6DMWo258lBLGxAX7WRMkzlmJUZcMxroM9H6gYdfsVwCxEwp05o6nQbATA5YiADxw6jdaqHuIVYLKHAXzvMP1uRMCII2fRqGiyIv3JvFHlIg/aV2l7hh056x7NjN9FHjSqa3u2OnJWZ0EenY7yoAll23MbL4c06iwdLgRZjQhY4mjIq6PR9HfkPKPaigcdtY5mC7IzhrWtWbysnq746QAFodHbpWhzJvH+Q7riZ3gOsbKk4zoK8usomeY+AJchAt5UVJ42h8pEktTt9oL85pZI79tYVntvUHRNmxTXrbZ82O/hlpeFHsR7S4hB+yZR8GGm8iMFffQjAL6zEIauvQ/ARLb7AezX3FPj7vMEgJ8BvKGZ07QVdygcQk7XQQ56yuIbXrNsXU8iUrYqhpMTDO6bqIndbdSGc7q7tuYaAKMZR9Aakwk2raOsUR5RsVbR35tAD+UjFo49ycKP8nPB9L4jMczE0xwsGObqwoFMnUoTzatT906xFOVZRMLNihhb2kAyYW+Di38vWty/C5HweqbiHzUhmHokZ7g6yfD8SL2FRcEXmYqnIw91/GHozMcL0njUMI3fEAEdAE5lKp7u53V8bLg0rhs+f22QTi8iYG6m0hRTa8M8zSSPRlNzDNKZoxh2p+0/RSC3F1ZygDEtHxzjUckJdtwgR5y/C2AF71vbTqCWZSreU6KMK9hhKjEWW26GqfZfznLUZBAssIyLou7nUwCvchS5jnUGIyHT+C2a6Q/xF2UzgFtKpHMr3zvIab3PaQfFGgtBss38SwCLCvYjtmXueaLiurUkdEjls5KipJ8NXYqzFX2Z64L7NobKVABHGxSF7DCAB1LpHsp8fp3HOrYc8x3G2b7HA4Bjmf9f6buSrUaZ7dM8+1wx045m88fl82SHQ1GSjJnsfwgZZvCpVxEkIF4QQcLrukzWf6TLqpCZioVBEcQz9JY2ESSwrusbaSFhcaPla5Bk2FsBr4ggYTFBEQYqLcQznYr9cd3SSU1m6s2FFgzf0SxC0mdv87UiSEXMBvAWgB9SLy4e4P/dlLquJi0kLGoiSFjURBBBEARBCIPfm7idm1galSV6dgcgRMJGZYmeLQEIkbBRWaInezbQp62NXg2O200CsUUiCHBXAEIkbFSW6JkagBAJG5VFsDjn10w7KUrkHynwYX0iyBg9AQjSI4KM0R2AIN0iyBhLAxBkqQhy7tFk34LME0HGmBaAINNEkHNjsrKvdK3STslBn/H0exSkX1rHeFxELSYljfIWNG9kqNLWiRrjWe5RkOUiiPqdKL4EWSCCjGe6R0GmiyDqk1SuDu0kFkZ5yg8G53DAgyAHpHXk0+tBkF4RJJ/1HgRZL4K4ealx4sgoTyGHhR4EWShqFL+UpmpBZogg+Zzf4A93JZY2yj9VIRQwVKEgQ6KEnu0VCrJdBNGzoUJBNrS6IP8DzP5ydoLBS7YAAAAASUVORK5CYII="
+        />
+      </symbol>
+      <symbol id="inventory" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAACRUlEQVR4nO2csU7cQBRFr0SUr0qNgpJ8SyB/kpqOT4NESkUT+ossuYgUUewyb95dzznSNIvW7/KOZ8Y2FhIAAAAAwL98kHQt6V7Sn33c759tP4MJXEn6JOnnLsBvjGdJD5K+SfqImR4JRk6uBCMnV4KRkyvByMmV4JXlpEvwCnIuVYKPJOdoEnyJclaR4GQ5q0twghwkqF8OEpQzc7Yvsxxp+LK29fTrOUJ+B6zJPuj4dY6Q7tA++ECI+iUgRP2NR4j6m40Q9TcYIepvKkLU30iEqL95CFF/wxCi/iYhJKAxRkh/MxwweHSifgkIUX/j24WshhGSBULCQEgYCAkDIWEgJAyEhIGQMBASxnJCfkh6GfCoYjvGbUG+5YS8DHx+tB1rNMsJ8eCRki+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCRTkcni+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCRTkcni+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCRTkcni+3UFEOh+fLLVSUw+H5cgsV5XB4vtxCE/9A9bcg33JC7vZGjpDxvSDfckLSQUgYCAkDIWFcvJAv+z/weu8m/STppuH4s/o0rdDTgGZ5H48Nx5/Vp2mFRjXLb9SrPv6sPk0rhBAhxIEnGDNECGHJEjNEbOps6mIPEZe97Vcl5j4k66rECEGIuQ8RM2T2HShLlrhTd+AJdjJpv4DZ1BFiZoiYISxZOvYewhBCfIEnwsmMfFmAoZNfnviP7RUYpKhExudzhAAAAACAzuQViG+wDTB98NYAAAAASUVORK5CYII="
+        />
+      </symbol>
+      <symbol id="forum" viewBox="0 0 24 24">
+        <image
+          width="24"
+          height="24"
+          xlink:href="data:image/png;base64,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"
+        />
+      </symbol>
     </svg>
 
     <main class="d-flex flex-nowrap">
+      <!-- Sidebar with fixed width -->
+      <div
+        id="sidebar"
+        class="d-md-flex flex-column flex-shrink-0 p-3 bg-light collapse"
+        style="width: 280px"
+      >
+        <!-- Close Button -->
+        <button
+          class="btn-close d-md-none"
+          style="position: absolute; top: 10px; right: 10px"
+          id="closeSidebar"
+          aria-label="Close"
+          data-bs-toggle="collapse"
+          data-bs-target="#sidebar"
+        ></button>
 
-        <!-- Sidebar with fixed width -->
-        <div id="sidebar" class="d-md-flex flex-column flex-shrink-0 p-3 bg-light collapse" style="width: 280px;">
-
-            <!-- Close Button -->
-            <button class="btn-close d-md-none" style="position: absolute; top: 10px; right: 10px;" id="closeSidebar" aria-label="Close" data-bs-toggle="collapse" data-bs-target="#sidebar"></button>
-
-            <!-- Sidebar Header -->
-            <a href="#" class="d-flex text-center align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <img class="" src="./assets/images/logo.png" height="50"/>
-                <span class="fs-4">GardenMate</span>
+        <!-- Sidebar Header -->
+        <a
+          href="#"
+          class="d-flex text-center align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+        >
+          <img class="" src="./assets/images/logo.png" height="50" />
+          <span class="fs-4">GardenMate</span>
+        </a>
+        <hr />
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">
+              <svg class="bi pe-none me-2 active-svg" width="24" height="24">
+                <use xlink:href="#dashboard" />
+              </svg>
+              Dashboard
             </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
-                    <svg class="bi pe-none me-2 active-svg" width="24" height="24"><use xlink:href="#dashboard"/></svg>
-                    Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-body-emphasis">
-                    <svg class="bi pe-none me-2" width="24" height="24"><use xlink:href="#plant"/></svg>
-                    My Plants
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-body-emphasis">
-                    <svg class="bi pe-none me-2" width="24" height="24"><use xlink:href="#inventory"/></svg>
-                    Inventory
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link link-body-emphasis">
-                    <svg class="bi pe-none me-2" width="24" height="24"><use xlink:href="#forum"/></svg>
-                    Forums
-                    </a>
-                </li>
-            </ul>
-            <hr>
-            <div class="dropdown">
-            <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong>Moemen Mohamed</strong>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-body-emphasis">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#plant" />
+              </svg>
+              My Plants
             </a>
-            <ul class="dropdown-menu text-small shadow">
-                <li><a class="dropdown-item" href="#">My Profile</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-            </div>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-body-emphasis">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#inventory" />
+              </svg>
+              Inventory
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link link-body-emphasis">
+              <svg class="bi pe-none me-2" width="24" height="24">
+                <use xlink:href="#forum" />
+              </svg>
+              Forums
+            </a>
+          </li>
+        </ul>
+        <hr />
+        <div class="dropdown">
+          <a
+            href="#"
+            class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://github.com/mdo.png"
+              alt=""
+              width="32"
+              height="32"
+              class="rounded-circle me-2"
+            />
+            <strong>Moemen Mohamed</strong>
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="#">My Profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
         </div>
+      </div>
 
-        <!-- Main content area that uses the rest of the space -->
-        <div class="flex-grow-1 overflow-auto">
-            <div class="container-fluid p-0 g-0 m-0">
-                <div class="row p-0 g-0">
-                    <div class="col-12" id="dashboard-banner">
-                        <!-- Button visible only on XS devices -->
-                        <button class="btn d-md-none" id="sidebarToggle" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-expanded="false" aria-controls="sidebar">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                            </svg>
-                        </button>
+      <!-- Main content area that uses the rest of the space -->
+      <div class="flex-grow-1 overflow-auto">
+        <div class="container-fluid p-0 g-0 m-0">
+          <div class="row p-0 g-0">
+            <div class="col-12" id="dashboard-banner">
+              <!-- Button visible only on XS devices -->
+              <button
+                class="btn d-md-none"
+                id="sidebarToggle"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#sidebar"
+                aria-expanded="false"
+                aria-controls="sidebar"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  class="bi bi-list"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                  />
+                </svg>
+              </button>
 
-                        <div class="text-overlay p-3">
-                            <h3>Good Morning,</h3>
-                            <h2 id="username">Moemen Mohamed</h2>
-                        </div>
-                    </div>
+              <div class="text-overlay p-3">
+                <h3>Good Morning,</h3>
+                <h2 id="username">Moemen Mohamed</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="row p-3 g-0">
+            <div class="col-12" id="recent-posts">
+              <h4>Recent Posts</h4>
+              <br />
+
+              <div
+                id="recentPostsCarousel"
+                class="carousel carousel-dark slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-indicators">
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleDark"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                  ></button>
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleDark"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+                  ></button>
+                  <button
+                    type="button"
+                    data-bs-target="#carouselExampleDark"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"
+                  ></button>
                 </div>
 
-                <div class="row p-3 g-0">
-                    <div class="col-12" id="recent-posts">
-                        <h4>Recent Posts</h4>
-                        <br />
+                <div class="carousel-inner">
+                  <!-- Each carousel-item represents one 'slide' -->
 
-                        <div id="recentPostsCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                              </div>
+                  <div class="carousel-item active">
+                    <div class="container col-9">
+                      <img
+                        src="https://github.com/mdo.png"
+                        alt=""
+                        width="32"
+                        height="32"
+                        class="rounded-circle me-2"
+                      />
+                      <strong>Moemen Mohamed</strong>
+                      <hr />
+                      <h5 class="card-title">Post Title 1</h5>
+                      <br />
+                      <p class="card-text">
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content.
+                      </p>
+                      <p class="card-text">
+                        <small class="text-muted">Posted 3 mins ago</small>
+                      </p>
+                    </div>
+                  </div>
 
-                            <div class="carousel-inner">
-                              <!-- Each carousel-item represents one 'slide' -->
-                              
-                              <div class="carousel-item active">
-                                    <div class="container col-9">
-                                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                                        <strong>Moemen Mohamed</strong>
-                                        <hr>
-                                        <h5 class="card-title">Post Title 1</h5>
-                                        <br/>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                        <p class="card-text"><small class="text-muted">Posted 3 mins ago</small></p>
-                                    </div>
-                              </div>
+                  <div class="carousel-item">
+                    <div class="container col-9">
+                      <img
+                        src="https://github.com/mdo.png"
+                        alt=""
+                        width="32"
+                        height="32"
+                        class="rounded-circle me-2"
+                      />
+                      <strong>Moemen Mohamed</strong>
+                      <hr />
+                      <h5 class="card-title">Post Title 2</h5>
+                      <br />
+                      <p class="card-text">
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content.
+                      </p>
+                      <p class="card-text">
+                        <small class="text-muted">Posted 4 mins ago</small>
+                      </p>
+                    </div>
+                  </div>
 
-                              <div class="carousel-item">
-                                <div class="container col-9">
-                                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                                    <strong>Moemen Mohamed</strong>
-                                    <hr>
-                                    <h5 class="card-title">Post Title 2</h5>
-                                    <br/>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                    <p class="card-text"><small class="text-muted">Posted 4 mins ago</small></p>
-                                </div>
-                          </div>
+                  <div class="carousel-item">
+                    <div class="container col-9">
+                      <img
+                        src="https://github.com/mdo.png"
+                        alt=""
+                        width="32"
+                        height="32"
+                        class="rounded-circle me-2"
+                      />
+                      <strong>Moemen Mohamed</strong>
+                      <hr />
+                      <h5 class="card-title">Post Title 3</h5>
+                      <br />
+                      <p class="card-text">
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content.
+                      </p>
+                      <p class="card-text">
+                        <small class="text-muted">Posted 5 mins ago</small>
+                      </p>
+                    </div>
+                  </div>
+                  <!-- Additional carousel-item elements for more slides -->
+                </div>
+                <!-- Carousel controls -->
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#recentPostsCarousel"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#recentPostsCarousel"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
 
-                          <div class="carousel-item">
-                            <div class="container col-9">
-                                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                                <strong>Moemen Mohamed</strong>
-                                <hr>
-                                <h5 class="card-title">Post Title 3</h5>
-                                <br/>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <p class="card-text"><small class="text-muted">Posted 5 mins ago</small></p>
-                            </div>
+          <hr />
+
+          <div class="row p-3 g-0">
+            <div class="col-12" id="recent-plants">
+              <div
+                class="d-flex justify-content-between align-items-center mb-3"
+              >
+                <h4 class="mb-0">Recently accessed Plants</h4>
+                <a
+                  href="#viewAll"
+                  class="text-secondary"
+                  style="font-size: 1rem"
+                  >View all</a
+                >
+              </div>
+              <br />
+
+              <div class="container py-0">
+                <div class="row">
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 3 weeks</p>
                       </div>
-                              <!-- Additional carousel-item elements for more slides -->
-                            </div>
-                            <!-- Carousel controls -->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#recentPostsCarousel" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#recentPostsCarousel" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
-                          </div>
                     </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 4 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 5 weeks</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/plant.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Philodendron Melanoneuron</h5>
+                        <p class="card-text">Tracked for 6 weeks</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-
-                <hr>
-
-                <div class="row p-3 g-0">
-                    <div class="col-12" id="recent-plants">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="mb-0">Recently accessed Plants</h4>
-                            <a href="#viewAll" class="text-secondary" style="font-size: 1rem;">View all</a>
-                        </div>
-                        <br />
-
-                        <div class="container py-0">
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <div class="card" style="border-radius: 20px; padding-top:20px;">
-                                        <img src="assets/images/plant.png" class="card-img-top img-fluid mx-auto" alt="Philodendron Melanoneuron" style="border-top-left-radius: 20px; border-top-right-radius: 20px; width: 50%;">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Philodendron Melanoneuron</h5>
-                                            <p class="card-text">Tracked for 3 weeks</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="card" style="border-radius: 20px; padding-top:20px;">
-                                        <img src="assets/images/plant.png" class="card-img-top img-fluid mx-auto" alt="Philodendron Melanoneuron" style="border-top-left-radius: 20px; border-top-right-radius: 20px; width: 50%;">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Philodendron Melanoneuron</h5>
-                                            <p class="card-text">Tracked for 4 weeks</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="card" style="border-radius: 20px; padding-top:20px;">
-                                        <img src="assets/images/plant.png" class="card-img-top img-fluid mx-auto" alt="Philodendron Melanoneuron" style="border-top-left-radius: 20px; border-top-right-radius: 20px; width: 50%;">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Philodendron Melanoneuron</h5>
-                                            <p class="card-text">Tracked for 5 weeks</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="card" style="border-radius: 20px; padding-top:20px;">
-                                        <img src="assets/images/plant.png" class="card-img-top img-fluid mx-auto" alt="Philodendron Melanoneuron" style="border-top-left-radius: 20px; border-top-right-radius: 20px; width: 50%;">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Philodendron Melanoneuron</h5>
-                                            <p class="card-text">Tracked for 6 weeks</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-                
-                <hr>
-                <div class="row p-3 g-0">
-                    <div class="col-12" id="recent-items">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="mb-0">Almost out of stock</h4>
-                            <a href="#viewAll" class="text-secondary" style="font-size: 1rem;">View all</a>
-                        </div>
-                        <br />
-
-                        <div class="container py-0">
-                            <div class="row">
-                                <div class="col-12 col-md-3">
-                                    <div class="card" style="border-radius: 20px; padding-top:20px;">
-                                        <img src="assets/images/item1.png" class="card-img-top img-fluid mx-auto" alt="Philodendron Melanoneuron" style="border-top-left-radius: 20px; border-top-right-radius: 20px; width: 50%;">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Blood Meal</h5>
-                                            <p class="card-text">4 Left</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="card" style="border-radius: 20px; padding-top:20px;">
-                                        <img src="assets/images/item2.png" class="card-img-top img-fluid mx-auto" alt="Philodendron Melanoneuron" style="border-top-left-radius: 20px; border-top-right-radius: 20px; width: 50%;">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Insect Spray</h5>
-                                            <p class="card-text">6 Left</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="card" style="border-radius: 20px; padding-top:20px;">
-                                        <img src="assets/images/item3.png" class="card-img-top img-fluid mx-auto" alt="Philodendron Melanoneuron" style="border-top-left-radius: 20px; border-top-right-radius: 20px; width: 50%;">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Medium Pot</h5>
-                                            <p class="card-text">8 Left</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-3">
-                                    <div class="card" style="border-radius: 20px; padding-top:20px;">
-                                        <img src="assets/images/item2.png" class="card-img-top img-fluid mx-auto" alt="Philodendron Melanoneuron" style="border-top-left-radius: 20px; border-top-right-radius: 20px; width: 50%;">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Insect Spray 2.0</h5>
-                                            <p class="card-text">10 Left</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+              </div>
             </div>
+          </div>
+
+          <hr />
+          <div class="row p-3 g-0">
+            <div class="col-12" id="recent-items">
+              <div
+                class="d-flex justify-content-between align-items-center mb-3"
+              >
+                <h4 class="mb-0">Almost out of stock</h4>
+                <a
+                  href="#viewAll"
+                  class="text-secondary"
+                  style="font-size: 1rem"
+                  >View all</a
+                >
+              </div>
+              <br />
+
+              <div class="container py-0">
+                <div class="row">
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/item1.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Blood Meal</h5>
+                        <p class="card-text">4 Left</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/item2.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Insect Spray</h5>
+                        <p class="card-text">6 Left</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/item3.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Medium Pot</h5>
+                        <p class="card-text">8 Left</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <div
+                      class="card"
+                      style="border-radius: 20px; padding-top: 20px"
+                    >
+                      <img
+                        src="assets/images/item2.png"
+                        class="card-img-top img-fluid mx-auto"
+                        alt="Philodendron Melanoneuron"
+                        style="
+                          border-top-left-radius: 20px;
+                          border-top-right-radius: 20px;
+                          width: 50%;
+                        "
+                      />
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Insect Spray 2.0</h5>
+                        <p class="card-text">10 Left</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </main>
 
     <!-- Bootstrap Bundle with Popper -->
